@@ -1,0 +1,79 @@
+{
+  "title": "Question",
+  "type": "object",
+  "x-tags": [
+    "Quote"
+  ],
+  "x-examples": {},
+  "description": "Used to convey the logic of list of questions to answer, valid answers and dependencies.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": 1
+    },
+    "description": {
+      "type": "string",
+      "example": "Desea aumentar el sublimite de Sanciones PCI que tiene por defecto?"
+    },
+    "language": {
+      "type": "string"
+    },
+    "dependency": {
+      "type": "string",
+      "example": 50
+    },
+    "dependencyCondition": {
+      "type": "object",
+      "properties": {
+        "operator": {
+          "type": "string",
+          "enum": [
+            "equalTo",
+            "higherEqualTo",
+            "higherThan",
+            "lowerThan",
+            "lowerEqualTo"
+          ],
+          "example": "equalTo"
+        },
+        "value": {
+          "type": [
+            "string",
+            "integer"
+          ],
+          "example": "si"
+        }
+      }
+    },
+    "screen": {
+      "type": "string",
+      "enum": [
+        "DatosCliente",
+        "DatosCobertura",
+        "DatosRiesgo",
+        "Cotizacion",
+        "Emision"
+      ]
+    },
+    "section": {
+      "type": "string",
+      "example": 1
+    },
+    "position": {
+      "type": "integer",
+      "example": 1
+    },
+    "validAnswer": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "string",
+          "integer"
+        ]
+      }
+    }
+  }
+}

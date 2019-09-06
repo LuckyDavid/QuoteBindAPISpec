@@ -1,0 +1,51 @@
+{
+  "title": "Quote",
+  "type": "object",
+  "x-tags": [
+    "Quote"
+  ],
+  "description": "Object that describes a quote during the quote & bind process",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "quote id is a calculated field"
+    },
+    "externalReference": {
+      "type": "string",
+      "description": "external reference to this quote to be used for operations such as listing"
+    },
+    "effectiveDate": {
+      "type": "string",
+      "format": "date",
+      "description": "effective date of the start of this policy"
+    },
+    "policyHolder": {
+      "type": "array",
+      "description": "this object will contain all policy holder data including personal data and bank details",
+      "items": {
+        "$ref": "./answer.v1.json"
+      }
+    },
+    "calculatedNetPremium": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "calculated value based on quote details"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "quoted"
+      ],
+      "description": "Quote status is a calculated field"
+    },
+    "productLineDetails": {
+      "$ref": "./product.v1.json"
+    }
+  },
+  "required": [
+    "externalReference"
+  ]
+}

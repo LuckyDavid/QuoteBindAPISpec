@@ -1,0 +1,22 @@
+{
+  "title": "Answer",
+  "type": "object",
+  "x-tags": [
+    "Quote"
+  ],
+  "description": "Answer for a given question",
+  "properties": {
+    "questionId": {
+      "type": "string",
+      "description": "question id provided by the API"
+    },
+    "answer": {
+      "type": [
+        "string",
+        "integer",
+        "null"
+      ],
+      "description": "answer provided by the API consumer"
+    }
+  }
+}

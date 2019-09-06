@@ -1,0 +1,16 @@
+{
+  "title": "PolicyHolder",
+  "type": "object",
+  "x-tags": [
+    "Quote"
+  ],
+  "properties": {
+    "personalData": {
+      "type": "array",
+      "items": {
+        "$ref": "./answer.v1.json"
+      }
+    }
+  },
+  "description": "Personal Data includes:\n- Name\n- Contacts\n- Address\n- Bank account information"
+}
