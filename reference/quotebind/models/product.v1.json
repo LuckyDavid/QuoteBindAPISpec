@@ -4,7 +4,7 @@
   "x-tags": [
     "Quote"
   ],
-  "description": "Product line details that includes product ID and the answers to the product specific questions",
+  "description": "Product line (Product) details that includes product ID and the answers to the product specific questions",
   "properties": {
     "id": {
       "type": "string",
