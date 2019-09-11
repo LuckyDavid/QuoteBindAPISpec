@@ -22,8 +22,61 @@
           "Quote",
           "support"
         ],
-        "responses": {},
-        "description": "Get available products for the broker"
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "description": "results",
+              "properties": {
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "./models/product.v1.json"
+                  }
+                }
+              }
+            },
+            "examples": {
+              "example-1": {
+                "results": [
+                  {
+                    "id": "1-Responsabilidad Civil Profesional",
+                    "availableSectors": [
+                      {
+                        "id": "1-CONSULTORIA",
+                        "availableActivities": [
+                          "158-Otra no detallada"
+                        ]
+                      },
+                      {
+                        "id": "9-OTRAS PROFESIONES",
+                        "availableActivities": [
+                          "903-Contact center - Call center",
+                          "945-Restauradores de arte",
+                          "949-Otra no detallada"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "46-CyberClear-Wil",
+                    "availableSectors": []
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "description": "Get available products for the broker",
+        "parameters": [
+          {
+            "type": "string",
+            "in": "header",
+            "name": "hisc-entity-ref",
+            "required": true
+          }
+        ]
       }
     },
     "/quote": {
@@ -33,7 +86,30 @@
           "Quote",
           "data"
         ],
-        "responses": {}
+        "parameters": [
+          {
+            "type": "string",
+            "in": "header",
+            "name": "hisc-entity-ref",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "./models/quote.v1.json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        }
       }
     },
     "/questions": {
@@ -43,8 +119,92 @@
           "Quote",
           "Support"
         ],
-        "responses": {},
-        "description": "Get list of questions with logic based on query input"
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "./models/question.v1.json"
+                  }
+                }
+              }
+            },
+            "examples": {
+              "example-1": {
+                "results": [
+                  {
+                    "id": "652",
+                    "description": "¿Se requiere doble validación por dos personas distintas al solicitante para cualquier pago o transferencia a terceros o internas de más de €10.000?",
+                    "language": "ES",
+                    "dependency": "650",
+                    "dependencyCondition": {
+                      "operator": "equalTo",
+                      "value": "si"
+                    },
+                    "screen": "DatosCobertura",
+                    "section": 3,
+                    "position": 2,
+                    "validAnswer": [
+                      "si",
+                      "no"
+                    ]
+                  },
+                  {
+                    "id": "653",
+                    "description": "¿Existe un registro formal de los datos de contacto e información financiera de sus clientes y proveedores?",
+                    "language": "ES",
+                    "dependency": "650",
+                    "dependencyCondition": {
+                      "operator": "equalTo",
+                      "value": "si"
+                    },
+                    "screen": "DatosCobertura",
+                    "section": 3,
+                    "position": 3,
+                    "validAnswer": [
+                      "si",
+                      "no"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "description": "Get list of questions with logic based on query input",
+        "parameters": [
+          {
+            "type": "string",
+            "in": "header",
+            "name": "hisc-entity-ref",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "type": "string",
+            "name": "productID",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "type": "string",
+            "name": "sector"
+          },
+          {
+            "in": "formData",
+            "type": "string",
+            "name": "activity"
+          },
+          {
+            "in": "formData",
+            "type": "string",
+            "name": "language"
+          }
+        ]
       }
     },
     "/document": {
@@ -54,106 +214,275 @@
           "Quote",
           "data"
         ],
-        "responses": {},
-        "description": "Upload document"
+        "description": "Upload document",
+        "parameters": [
+          {
+            "type": "string",
+            "in": "header",
+            "name": "hisc-entity-ref",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "./models/document.v1.json"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        }
       }
     },
     "/quote/{id}/effectiveDate": {
-      "parameters": {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
       "post": {
         "summary": "Set effective date",
         "tags": [
           "Quote",
           "Data"
         ],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "type": "string",
+            "in": "header",
+            "name": "hisc-entity-ref",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "type": "string",
+            "name": "effectiveDate",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        }
       }
     },
     "/quote/{id}/policyHolder": {
-      "parameters": {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
       "post": {
         "summary": "Set policy holder personal data and bank information (PII)",
         "tags": [
           "Quote",
           "Data"
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "type": "string",
+            "in": "header",
+            "name": "hisc-entity-ref",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "./models/policyholder.v1.json"
+            }
+          }
+        ]
       }
     },
     "/quote/{id}/calculatePremium": {
-      "parameters": {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
       "post": {
         "summary": "request premium calculation",
         "tags": [
           "Quote",
           "Data"
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "./models/quote.v1.json"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "type": "string",
+            "in": "header",
+            "name": "hisc-entity-ref",
+            "required": true
+          }
+        ]
       }
     },
     "/quote/{id}/basicDetails": {
-      "parameters": {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
       "post": {
         "summary": "provide basic details for this quote (answers to questionnaire)",
         "tags": [
           "Quote",
           "Data"
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "type": "string",
+            "in": "header",
+            "name": "hisc-entity-ref",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "./models/answer.v1.json"
+              }
+            }
+          }
+        ]
       }
     },
     "/quote/{id}/riskDetails": {
-      "parameters": {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
       "post": {
         "summary": "provide risk details for this product line on the quote (answers to questionnaire)",
         "tags": [
           "Quote",
           "Data"
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "type": "string",
+            "in": "header",
+            "name": "hisc-entity-ref",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "./models/answer.v1.json"
+              }
+            }
+          }
+        ]
       }
     },
     "/quote/{id}/coverDetails": {
-      "parameters": {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "type": "string"
-      },
       "post": {
         "summary": "provide cover details for this product line on the quote (answers to questionnaire)",
         "tags": [
           "Quote",
           "Data"
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "type": "string",
+            "in": "header",
+            "name": "hisc-entity-ref",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "./models/answer.v1.json"
+              }
+            }
+          }
+        ]
       }
     }
   },
-  "definitions": {}
+  "definitions": {},
+  "securityDefinitions": {
+    "API Key - 1": {
+      "name": "API Key",
+      "type": "apiKey",
+      "in": "header"
+    }
+  }
 }

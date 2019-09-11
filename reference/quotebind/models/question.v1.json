@@ -4,7 +4,27 @@
   "x-tags": [
     "Quote"
   ],
-  "x-examples": {},
+  "x-examples": {
+    "example-1": {
+      "value": {
+        "id": "652",
+        "description": "¿Se requiere doble validación por dos personas distintas al solicitante para cualquier pago o transferencia a terceros o internas de más de €10.000?",
+        "language": "ES",
+        "dependency": "650",
+        "dependencyCondition": {
+          "operator": "equalTo",
+          "value": "si"
+        },
+        "screen": "DatosCobertura",
+        "section": 3,
+        "position": 2,
+        "validAnswer": [
+          "si",
+          "no"
+        ]
+      }
+    }
+  },
   "description": "Used to convey the logic of list of questions to answer, valid answers and dependencies.",
   "properties": {
     "id": {

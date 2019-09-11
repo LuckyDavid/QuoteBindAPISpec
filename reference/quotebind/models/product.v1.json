@@ -4,9 +4,59 @@
   "x-tags": [
     "Quote"
   ],
+  "description": "Object that describes a Product",
+  "x-examples": {
+    "example-1": {
+      "value": {
+        "id": "1-Responsabilidad Civil Profesional",
+        "availableSectors": [
+          {
+            "id": "1-CONSULTORIA",
+            "availableActivities": [
+              "158-Otra no detallada"
+            ]
+          },
+          {
+            "id": "9-OTRAS PROFESIONES",
+            "availableActivities": [
+              "903-Contact center - Call center",
+              "945-Restauradores de arte",
+              "949-Otra no detallada"
+            ]
+          }
+        ]
+      }
+    }
+  },
   "properties": {
     "id": {
-      "type": "string"
+      "type": "string",
+      "example": "15-CyberClear"
+    },
+    "availableSectors": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "9-OTRAS PROFESIONES"
+          },
+          "availableActivities": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "example": "945-Restauradores de arte",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
     }
   }
 }
