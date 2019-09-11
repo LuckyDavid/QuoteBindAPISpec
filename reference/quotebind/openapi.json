@@ -14,6 +14,146 @@
   "consumes": [
     "application/json"
   ],
-  "paths": {},
+  "paths": {
+    "/products": {
+      "get": {
+        "summary": "Get available products for the broker",
+        "tags": [
+          "Quote",
+          "support"
+        ],
+        "responses": {},
+        "description": "Get available products for the broker"
+      }
+    },
+    "/quote": {
+      "post": {
+        "summary": "Creates a new (unfinished) quote. Returns quote (with ID) to be used on subsequent calls.",
+        "tags": [
+          "Quote",
+          "data"
+        ],
+        "responses": {}
+      }
+    },
+    "/questions": {
+      "get": {
+        "summary": "Get list of questions with logic based on query input",
+        "tags": [
+          "Quote",
+          "Support"
+        ],
+        "responses": {},
+        "description": "Get list of questions with logic based on query input"
+      }
+    },
+    "/document": {
+      "post": {
+        "summary": "Document-related operations",
+        "tags": [
+          "Quote",
+          "data"
+        ],
+        "responses": {},
+        "description": "Upload document"
+      }
+    },
+    "/quote/{id}/effectiveDate": {
+      "parameters": {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      "post": {
+        "summary": "Set effective date",
+        "tags": [
+          "Quote",
+          "Data"
+        ],
+        "responses": {}
+      }
+    },
+    "/quote/{id}/policyHolder": {
+      "parameters": {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      "post": {
+        "summary": "Set policy holder personal data and bank information (PII)",
+        "tags": [
+          "Quote",
+          "Data"
+        ],
+        "responses": {}
+      }
+    },
+    "/quote/{id}/calculatePremium": {
+      "parameters": {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      "post": {
+        "summary": "request premium calculation",
+        "tags": [
+          "Quote",
+          "Data"
+        ],
+        "responses": {}
+      }
+    },
+    "/quote/{id}/basicDetails": {
+      "parameters": {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      "post": {
+        "summary": "provide basic details for this quote (answers to questionnaire)",
+        "tags": [
+          "Quote",
+          "Data"
+        ],
+        "responses": {}
+      }
+    },
+    "/quote/{id}/riskDetails": {
+      "parameters": {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      "post": {
+        "summary": "provide risk details for this product line on the quote (answers to questionnaire)",
+        "tags": [
+          "Quote",
+          "Data"
+        ],
+        "responses": {}
+      }
+    },
+    "/quote/{id}/coverDetails": {
+      "parameters": {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      "post": {
+        "summary": "provide cover details for this product line on the quote (answers to questionnaire)",
+        "tags": [
+          "Quote",
+          "Data"
+        ],
+        "responses": {}
+      }
+    }
+  },
   "definitions": {}
 }

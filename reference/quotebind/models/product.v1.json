@@ -4,28 +4,9 @@
   "x-tags": [
     "Quote"
   ],
-  "description": "Product line (Product) details that includes product ID and the answers to the product specific questions",
   "properties": {
     "id": {
-      "type": "string",
-      "description": "product ID to be chosen by consumer"
-    },
-    "basicDetails": {
-      "type": "array",
-      "description": "basic details specific for this product such as TURNOVER; INDUSTRY; ACTIVITY",
-      "items": {
-        "$ref": "./answer.v1.json"
-      }
-    },
-    "insuredObjects": {
-      "type": "array",
-      "description": "each product might insure multiple objects and for each object it will have product specific risk and cover questions",
-      "items": {
-        "$ref": "./insuredobject.v1.json"
-      }
+      "type": "string"
     }
-  },
-  "required": [
-    "id"
-  ]
+  }
 }

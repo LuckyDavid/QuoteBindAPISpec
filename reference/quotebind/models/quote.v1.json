@@ -47,5 +47,12 @@
   },
   "required": [
     "externalReference"
-  ]
+  ],
+  "x-examples": {
+    "example-1": {
+      "id": "QTE000001",
+      "externalReference": "XPTO00001",
+      "status": "draft"
+    }
+  }
 }

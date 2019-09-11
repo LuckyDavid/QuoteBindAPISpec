@@ -1,0 +1,27 @@
+{
+  "title": "Document",
+  "type": "object",
+  "x-tags": [
+    "Quote"
+  ],
+  "description": "Document that is always associated with a quote (uploaded by client)",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "document id is a calculated field"
+    },
+    "quoteId": {
+      "type": "string",
+      "description": "mandatory reference to a quote"
+    },
+    "content": {
+      "type": "string",
+      "format": "binary",
+      "description": "document file"
+    }
+  },
+  "required": [
+    "quoteId",
+    "content"
+  ]
+}

@@ -4,16 +4,22 @@
   "x-tags": [
     "Quote"
   ],
+  "description": "Insured object that is insured on the policy with object detail",
   "properties": {
     "id": {
       "type": "string"
     },
-    "objectDetail": {
+    "riskDetail": {
       "type": "array",
       "items": {
         "$ref": "./answer.v1.json"
       }
+    },
+    "coverDetail": {
+      "type": "array",
+      "items": {
+        "$ref": "./question.v1.json"
+      }
     }
-  },
-  "description": "Insured object that is insured on the policy with object detail"
+  }
 }
